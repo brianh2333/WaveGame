@@ -14,7 +14,7 @@ public class WaveSpawner : MonoBehaviour
 
     public ObjectPooler objPooler;
 
-    public WaveStatus status;// = WaveStatus.WAITING;
+    public WaveStatus status;
 
     public GlobalTimer globalTime;
 

@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     public float lifetime;
     public float dmg;
 
-    public DisplayCurrency currency;
+    public GameManager gameManager;
 
 
     public class OnImpactEventArgs : EventArgs
@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
 
     private void Awake()
     { 
-         currency = GameObject.Find("DisplayUI").GetComponent<DisplayCurrency>();
+         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -36,11 +36,12 @@ public class Projectile : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            gameManager.AddCurrency(collision.name);
             DestroyProjectile();
             collision.GetComponent<HealthSystem>().TakeDamage(dmg);
-            currency.AddCurrency(collision.name);
         }
     }
+
 
     void DestroyProjectile()
     {

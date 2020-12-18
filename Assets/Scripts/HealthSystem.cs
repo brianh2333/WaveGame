@@ -18,6 +18,11 @@ public class HealthSystem : MonoBehaviour
     }
 
 
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
     public void SetHealth(float mHealth)
     {
         maxHealth = mHealth;
@@ -43,6 +48,7 @@ public class HealthSystem : MonoBehaviour
             NormalizeHealth();
         }
     }
+
 
 
 }

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueCubeEnemy : Enemy
+public class PurpleCubeEnemy : Enemy
 {
-    public string enemyName = "Blue Cube";
+    public string enemyName = "Purple Cube";
     public float damage;
     public float walkspeed;
-    public float health = 100;
+    public float health = 50;
     private float maxHealth;
 
     public Transform center;
@@ -27,7 +27,7 @@ public class BlueCubeEnemy : Enemy
     private bool canDamage;
 
 
-    public BlueCubeEnemy(string name, float dmg, float speed, float hlth)
+    public PurpleCubeEnemy(string name, float dmg, float speed, float hlth)
     {
         enemyName = name;
         damage = dmg;
@@ -38,7 +38,7 @@ public class BlueCubeEnemy : Enemy
 
     public override void SetHealth(float health)
     {
-        if(gameObject.GetComponent<HealthSystem>() == null)
+        if (gameObject.GetComponent<HealthSystem>() == null)
             gameObject.AddComponent<HealthSystem>();
 
         gameObject.GetComponent<HealthSystem>().SetHealth(health);
@@ -75,7 +75,6 @@ public class BlueCubeEnemy : Enemy
         SetHealth(health);
         maxHealth = health;
         gameObject.GetComponent<HealthSystem>().OnDamaged += Event_TakeDamage;
-        animator = GetComponentInChildren<Animator>();
 
         target = GameObject.FindGameObjectWithTag("Target");
     }
@@ -85,13 +84,14 @@ public class BlueCubeEnemy : Enemy
 
         transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
 
+        animator = GetComponentInChildren<Animator>();
         SetHealth(health);
 
     }
 
     private void Update()
     {
-        if ((health <= (maxHealth-(maxHealth*.50)) && health > 0) && canHurt)
+        if ((health <= (maxHealth - (maxHealth * .50)) && health > 0) && canHurt)
         {
             animator.SetBool("Hurt", true);
             canHurt = false;
@@ -115,7 +115,8 @@ public class BlueCubeEnemy : Enemy
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Player")){
+        if (col.CompareTag("Player"))
+        {
             canDamage = true;
             StartCoroutine(DamagePlayer(canDamage, col));
         }
@@ -156,5 +157,4 @@ public class BlueCubeEnemy : Enemy
         canHurt = true;
         canDie = true;
     }
-
 }
