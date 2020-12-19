@@ -9,10 +9,12 @@ public class EnemySpawner : MonoBehaviour {
     public GameObject blueEnemyPrefab;
     public GameObject greenEnemyPrefab;
     public GameObject purpleEnemyPrefab;
+    public GameObject redEnemyPrefab;
     public int poolSize = 50;
     GameObject[] blueEnemyPool;
     GameObject[] greemEnemyPool;
     GameObject[] purpleEnemyPool;
+    GameObject[] redEnemyPool;
     int currentIndex = 0;
 
     void Awake() {
@@ -23,6 +25,7 @@ public class EnemySpawner : MonoBehaviour {
         BlueEnemy();
         GreenEnemy();
         PurpleEnemy();
+        RedEnemy();
     }
 
     void BlueEnemy() {
@@ -52,6 +55,17 @@ public class EnemySpawner : MonoBehaviour {
         }
     }
 
+    void RedEnemy()
+    {
+        redEnemyPool = new GameObject[poolSize];
+        for (int i = 0; i < poolSize; i++)
+        {
+            GameObject redEnemy = Instantiate(redEnemyPrefab);
+            redEnemy.SetActive(false);
+            purpleEnemyPool[i] = redEnemy;
+        }
+    }
+
     public void BlueEnemySpawn(Vector3 pos) {
         GameObject enemy = blueEnemyPool[currentIndex];
         enemy.transform.position = pos;
@@ -70,6 +84,15 @@ public class EnemySpawner : MonoBehaviour {
 
     public void PurpleEnemySpawn(Vector3 pos) {
         GameObject enemy = purpleEnemyPool[currentIndex];
+        enemy.transform.position = pos;
+        enemy.SetActive(true);
+        currentIndex++;
+        currentIndex %= poolSize;
+    }
+
+    public void RedEnemySpawn(Vector3 pos)
+    {
+        GameObject enemy = redEnemyPool[currentIndex];
         enemy.transform.position = pos;
         enemy.SetActive(true);
         currentIndex++;

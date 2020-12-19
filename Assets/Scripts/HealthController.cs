@@ -12,7 +12,8 @@ public class HealthController : MonoBehaviour {
 
     public bool isEnemy, isPlayer;
     bool canChange;
-    bool isDead = false;
+    //bool isDead = false;
+
     
     void Awake() {
         health = maxHealth; //Health starts at Max health
@@ -29,13 +30,14 @@ public class HealthController : MonoBehaviour {
         }
 
         health -= damage;
-        if (health <= 0) {
+        /*if (health <= 0) {
             isDead = true;
-        }
+        }*/
 
-        if (isEnemy && health <= 0) {
+        /*if (isEnemy && isDead) {
+            isDead = true;
             Debug.Log("KilledEnemy Called");
             GameManager.instance.KilledEnemy();
-        }
+        }*/
     }
 }

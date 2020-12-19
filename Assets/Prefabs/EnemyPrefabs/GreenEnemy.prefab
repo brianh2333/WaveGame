@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8788704970729170498}
   - component: {fileID: 8788704970729170510}
   - component: {fileID: 2108200640773145011}
+  - component: {fileID: 3221748320164446880}
   m_Layer: 0
   m_Name: GreenEnemy
   m_TagString: Enemy
@@ -105,7 +106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8788704970729170498
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,8 +148,10 @@ MonoBehaviour:
   blueEnemy: 0
   greenEnemy: 1
   purpleEnemy: 0
-  speed: 0.5
+  speed: 2
+  deathSeconds: 0.5
   target: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!114 &2108200640773145011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +164,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80727d62cc360fa40a3a9ed01bca2ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 15
   health: 0
   isEnemy: 1
   isPlayer: 0
+--- !u!95 &3221748320164446880
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788704970729170497}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2ac96c19a5e7714881c3599739f0882, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

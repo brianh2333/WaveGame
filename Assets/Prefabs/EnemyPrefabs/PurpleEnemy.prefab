@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2163479961808294056}
   - component: {fileID: 2163479961808294059}
   - component: {fileID: 6326652836564613571}
+  - component: {fileID: 7180886043584084918}
   m_Layer: 0
   m_Name: PurpleEnemy
   m_TagString: Enemy
@@ -105,7 +106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &2163479961808294056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,7 +149,9 @@ MonoBehaviour:
   greenEnemy: 0
   purpleEnemy: 1
   speed: 0.5
+  deathSeconds: 0.5
   target: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!114 &6326652836564613571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +164,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80727d62cc360fa40a3a9ed01bca2ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 40
   health: 0
   isEnemy: 1
   isPlayer: 0
+--- !u!95 &7180886043584084918
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2163479961808294058}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f2a32ba6732a1141a2bac4cd7c94c56, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

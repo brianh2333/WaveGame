@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D c) {
         HitObject(c.gameObject);
         this.gameObject.SetActive(false);
+        GameManager.instance.AddCurrency(c.name);
     }
 
     void HitObject(GameObject g) {
