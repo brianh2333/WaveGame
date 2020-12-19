@@ -14,7 +14,6 @@ public class Projectile : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D c) {
         HitObject(c.gameObject);
         this.gameObject.SetActive(false);
-        Debug.Log("Touched");
     }
 
     void HitObject(GameObject g) {

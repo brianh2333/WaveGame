@@ -147,8 +147,7 @@ MonoBehaviour:
   blueEnemy: 1
   greenEnemy: 0
   purpleEnemy: 0
-  speed: 0.3
-  maxDeathSeconds: 0
+  speed: 0.5
   target: {fileID: 0}
 --- !u!114 &5937616427656861099
 MonoBehaviour:
@@ -164,8 +163,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 0
-  oldHealth: 0
-  blueEnemy: 1
-  greenEnemy: 0
-  purpleEnemy: 0
-  Player: 0
+  isEnemy: 1
+  isPlayer: 0

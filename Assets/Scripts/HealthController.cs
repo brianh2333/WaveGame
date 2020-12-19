@@ -10,7 +10,7 @@ public class HealthController : MonoBehaviour {
     public float maxHealth = 100;
     public float health;
 
-    public bool blueEnemy, greenEnemy, purpleEnemy, Player;
+    public bool isEnemy, isPlayer;
     bool canChange;
     bool isDead = false;
     
@@ -31,6 +31,11 @@ public class HealthController : MonoBehaviour {
         health -= damage;
         if (health <= 0) {
             isDead = true;
+        }
+
+        if (isEnemy && health <= 0) {
+            Debug.Log("KilledEnemy Called");
+            GameManager.instance.KilledEnemy();
         }
     }
 }
