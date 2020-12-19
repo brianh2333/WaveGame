@@ -6,6 +6,11 @@ public class FollowMouse : MonoBehaviour {
 
     public Vector3 mousePosition;
     public Cursor cursor;
+    public Texture2D newCursor;
+
+    void Start() {
+        Cursor.SetCursor(newCursor, Vector2.zero, CursorMode.ForceSoftware);
+    }
 
     void FixedUpdate() {
         Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;

@@ -564,5 +564,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4373083859719418796, guid: 8ed3a72e86311b54a85af7c7fc23da14,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373083859719418803, guid: 8ed3a72e86311b54a85af7c7fc23da14,
+        type: 3}
+      propertyPath: newCursor
+      value: 
+      objectReference: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ed3a72e86311b54a85af7c7fc23da14, type: 3}
