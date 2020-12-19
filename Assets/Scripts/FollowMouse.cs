@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowMouse : MonoBehaviour
-{
-    public Vector3 mousePosition;
+public class FollowMouse : MonoBehaviour {
 
+    public Vector3 mousePosition;
     public Cursor cursor;
 
-
-    private void FixedUpdate()
-    {
+    void FixedUpdate() {
         Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         diff.Normalize();
 

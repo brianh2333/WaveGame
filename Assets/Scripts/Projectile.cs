@@ -1,50 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class Projectile : MonoBehaviour
-{
+public class Projectile : MonoBehaviour {
+
     public float speed;
-    public float lifetime;
-    public float dmg;
+    public int attackDamage = 10;
 
-    public GameManager gameManager;
-
-
-    public class OnImpactEventArgs : EventArgs
-    {
-        public string name;
-    }
-
-    private void OnEnable()
-    {
-        Invoke(nameof(DestroyProjectile), lifetime);
-    }
-
-    private void Awake()
-    { 
-         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-    }
-
-    private void Update()
-    {
+    void Update() {
         transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
-        {
-            gameManager.AddCurrency(collision.name);
-            DestroyProjectile();
-            collision.GetComponent<HealthSystem>().TakeDamage(dmg);
-        }
+    void OnTriggerEnter2D(Collider2D c) {
+        HitObject(c.gameObject);
+        this.gameObject.SetActive(false);
+        Debug.Log("Touched");
     }
 
-
-    void DestroyProjectile()
-    {
-        gameObject.SetActive(false);
+    void HitObject(GameObject g) {
+        HealthController health = g.GetComponent<HealthController>();
+        if (health != null) {
+            health.TakeDamage(attackDamage);
+        }
     }
 }
