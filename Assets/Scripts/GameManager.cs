@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
-    
+public class GameManager : MonoBehaviour
+{
+
     public static GameManager instance; //Creating GameManager singleton
 
     [Header("---VARIABLES---")]
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour {
     public float currency = 0;
     bool isPaused = false;
     bool isShopMenu = false;
-    
+
     [Header("---TEXTS---")]
     public Text nextWaveCountdownText;
     public Text waveText;
@@ -21,12 +22,15 @@ public class GameManager : MonoBehaviour {
 
     [Header("---GAMEOBJECTS---")]
     public Animator nextWaveCountdownTextAnim;
+    public Animator pauseButtonAnim;
     public GameObject pauseMenu;
     public GameObject shopMenu;
 
-    void Awake() {
+    void Awake()
+    {
         if (instance == null) instance = this;
-        else {
+        else
+        {
             Destroy(this.gameObject); //If there's already another GameManager, destroy this
         }
         nextWaveCountdownTextAnim = nextWaveCountdownText.GetComponentInParent<Animator>();
@@ -35,43 +39,74 @@ public class GameManager : MonoBehaviour {
         pauseMenu.SetActive(false);
     }
 
-    void Update() {
+    void Update()
+    {
         nextWaveCountdownText.text = "Next wave: " + WaveSpawner.instance.nextWaveCountdown.ToString("F2");
         waveText.text = WaveSpawner.instance.waves[WaveSpawner.waveIndex].name;
 
-        if(WaveSpawner.instance.nextWaveCountdown <= 0) {
+        if (WaveSpawner.instance.nextWaveCountdown <= 0)
+        {
             nextWaveCountdownTextAnim.SetTrigger("FadeOut");
         }
-        else if (WaveSpawner.instance.nextWaveCountdown >= 0) {
+        else if (WaveSpawner.instance.nextWaveCountdown >= 0)
+        {
             nextWaveCountdownTextAnim.SetTrigger("FadeIn");
         }
 
         currencyText.text = "Currency: " + currency;
 
         //PAUSE MENU
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+        {
             Time.timeScale = 0f;
             pauseMenu.SetActive(true);
             isPaused = true;
+            pauseButtonAnim.SetBool("Pause", isPaused);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused) {
+        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+        {
             Time.timeScale = 1f;
             pauseMenu.SetActive(false);
             isPaused = false;
+            pauseButtonAnim.SetBool("Pause", isPaused);
         }
 
+
         //SHOP MENU
-        if (Input.GetKeyDown(KeyCode.S) && !isShopMenu) {
+        if (Input.GetKeyDown(KeyCode.S) && !isShopMenu)
+        {
             shopMenu.SetActive(true);
             isShopMenu = true;
         }
-        else if (Input.GetKeyDown(KeyCode.S) && shopMenu) {
+        else if (Input.GetKeyDown(KeyCode.S) && shopMenu)
+        {
             shopMenu.SetActive(false);
             isShopMenu = false;
         }
+
+
     }
 
-    public void AddCurrency(string name) {
+    public void PauseMenuButton()
+    {
+        if (!isPaused)
+        {
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+            isPaused = true;
+            pauseButtonAnim.SetBool("Pause", isPaused);
+        }
+        else if (isPaused)
+        {
+            Time.timeScale = 1f;
+            pauseMenu.SetActive(false);
+            isPaused = false;
+            pauseButtonAnim.SetBool("Pause", isPaused);
+        }
+    }
+
+    public void AddCurrency(string name)
+    {
         int ID = 0;
         if (name.Contains("Blue"))
             ID = 1;
@@ -79,9 +114,12 @@ public class GameManager : MonoBehaviour {
             ID = 2;
         else if (name.Contains("Purple"))
             ID = 3;
+        else if (name.Contains("Red"))
+            ID = 4;
 
 
-        switch (ID) {
+        switch (ID)
+        {
             case 1:
                 currency += 1;
                 break;
@@ -91,9 +129,13 @@ public class GameManager : MonoBehaviour {
             case 3:
                 currency += 3;
                 break;
+            case 4:
+                currency += 4;
+                break;
             default:
                 break;
         }
         currencyText.text = "Currency: " + currency;
     }
+
 }
