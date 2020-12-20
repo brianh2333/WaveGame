@@ -10,12 +10,14 @@ public class FireProjectile : MonoBehaviour {
     public float fireRate = 5f;
     float nextTimeToFire = 0f;
     public Slider fireRateSlider;
+    public AudioSource turretShootSound;
 
     void Update() {
         if(Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 3.2f/fireRate;
             Rigidbody2D newBullet = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
             newBullet.AddForce(transform.forward * velocity, ForceMode2D.Impulse);
+            turretShootSound.Play();
         }
         fireRateSlider.value = fireRate;
     }
