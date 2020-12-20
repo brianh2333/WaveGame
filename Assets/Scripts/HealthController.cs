@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthController : MonoBehaviour {
     
@@ -12,17 +14,18 @@ public class HealthController : MonoBehaviour {
 
     public bool isEnemy, isPlayer;
     bool canChange;
-    //bool isDead = false;
-
+    public Slider playerHealthSlider;
     
     void Awake() {
         health = maxHealth; //Health starts at Max health
+        if (isPlayer) playerHealthSlider.value = health;
     }
 
     public void TakeDamage(float damage) {
         canChange = true;
         float oldHealth = health;
-
+        if (isPlayer) playerHealthSlider.value = health;
+        
         if (canChange) {
             health -= damage;
             health = Mathf.Clamp(health, 0, maxHealth);
@@ -30,14 +33,9 @@ public class HealthController : MonoBehaviour {
         }
 
         health -= damage;
-        /*if (health <= 0) {
-            isDead = true;
-        }*/
-
-        /*if (isEnemy && isDead) {
-            isDead = true;
-            Debug.Log("KilledEnemy Called");
-            GameManager.instance.KilledEnemy();
-        }*/
+        
+        if (isPlayer && health <= 0) {
+            SceneManager.LoadScene(0);
+        }
     }
 }

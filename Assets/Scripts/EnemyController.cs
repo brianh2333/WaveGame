@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour {
     
     public bool blueEnemy, greenEnemy, purpleEnemy, redEnemy;
     public float speed;
+    public float attackDamage = 50;
 
     [SerializeField]
     private float deathSeconds; //time until despawn when health hits 0
@@ -24,8 +25,6 @@ public class EnemyController : MonoBehaviour {
         target = GameObject.FindGameObjectWithTag("Player");
         health = GetComponent<HealthController>();
         anim = GetComponent<Animator>();
-
-
     }
 
     void OnEnable() {
@@ -52,8 +51,7 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
-    public IEnumerator Despawn() // We don't want the enemy to despawn or "disable" immediately
-    {
+    public IEnumerator Despawn() {
         WaveSpawner.aliveEnemies--;
         speed = 0;
         anim.SetTrigger("Dead");
@@ -61,4 +59,17 @@ public class EnemyController : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
+    void OnTriggerEnter2D(Collider2D c) {
+        if (c.gameObject.CompareTag("Player")) {
+            HitObject(c.gameObject);
+            StartCoroutine(Despawn());
+        }
+    }
+
+    void HitObject(GameObject g) {
+        HealthController health = g.GetComponent<HealthController>();
+        if (health != null) {
+            health.TakeDamage(attackDamage);
+        }
+    }
 }
