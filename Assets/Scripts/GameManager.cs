@@ -7,49 +7,49 @@ public class GameManager : MonoBehaviour {
     
     public static GameManager instance; //Creating GameManager singleton
 
+    [Header("---VARIABLES---")]
     public float spawnWaitTime = 4;
-
     //Note: we are adding currency per projectile hit based on the enemy
     public float currency = 0;
-    public Text currencyText;
-
+    
+    [Header("---TEXTS---")]
     public Text nextWaveCountdownText;
-
     public Text waveText;
+    Text currencyText;
 
+    [Header("---GAMEOBJECTS---")]
     public Animator nextWaveCountdownTextAnim;
+    public GameObject pauseMenu;
+    public GameObject shopMenu;
 
     void Awake() {
-        if (instance == null) {
-            instance = this;
-        }
+        if (instance == null) instance = this;
         else {
             Destroy(this.gameObject); //If there's already another GameManager, destroy this
         }
         nextWaveCountdownTextAnim = nextWaveCountdownText.GetComponentInParent<Animator>();
         currencyText.text = "Currency: " + currency;
+        shopMenu.SetActive(false);
+        pauseMenu.SetActive(false);
     }
 
-    private void Update()
-    {
+    void Update() {
         nextWaveCountdownText.text = "Next wave: " + WaveSpawner.instance.nextWaveCountdown.ToString("F2");
         waveText.text = WaveSpawner.instance.waves[WaveSpawner.waveIndex].name;
 
-        if(WaveSpawner.instance.nextWaveCountdown <= 0)
-        {
+        if(WaveSpawner.instance.nextWaveCountdown <= 0) {
             nextWaveCountdownTextAnim.SetTrigger("FadeOut");
         }
-        else if (WaveSpawner.instance.nextWaveCountdown >= 0)
-        {
+        else if (WaveSpawner.instance.nextWaveCountdown >= 0) {
             nextWaveCountdownTextAnim.SetTrigger("FadeIn");
         }
-
+        
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            PauseMenu();
+        }
     }
 
-
-
-    public void AddCurrency(string name)
-    {
+    public void AddCurrency(string name) {
         int ID = 0;
         if (name.Contains("Blue"))
             ID = 1;
@@ -59,8 +59,7 @@ public class GameManager : MonoBehaviour {
             ID = 3;
 
 
-        switch (ID)
-        {
+        switch (ID) {
             case 1:
                 currency += 1;
                 break;
@@ -73,33 +72,16 @@ public class GameManager : MonoBehaviour {
             default:
                 break;
         }
-
         currencyText.text = "Currency: " + currency;
-
     }
 
+    public void PauseMenu() {
+        Time.timeScale = 0f;
+        pauseMenu.SetActive(true);
 
-    /*IEnumerator Start() {
-        while (enabled) {
-            yield return new WaitForSeconds(spawnWaitTime);
-            for (int i = 0; i < 1; i++) {
-                int nextEnemyPoint = Random.Range(0, 10);
-                Vector3[] points = new Vector3[] {
-                    new Vector3(-13.61f, 7.67f, 0),
-                    new Vector3(-8.64f, 9.97f, 0),
-                    new Vector3(0.45f, 8.16f, 0),
-                    new Vector3(12.83f, 7.75f, 0),
-                    new Vector3(13.04f, -2.27f, 0),
-                    new Vector3(13.41f, -7.1f, 0),
-                    new Vector3(5.18f, -7.81f, 0),
-                    new Vector3(-0.58f, -7.8f, 0),
-                    new Vector3(-9.83f, -8.02f, 0),
-                    new Vector3(-13.03f, -1.69f, 0)
-                };
-                EnemySpawner.instance.BlueEnemySpawn(points[nextEnemyPoint]);
-                //EnemySpawner.instance.GreenEnemySpawn(points[nextEnemyPoint]);
-                //EnemySpawner.instance.PurpleEnemySpawn(points[nextEnemyPoint]);
-            }
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
         }
-    }*/
+    }
 }
