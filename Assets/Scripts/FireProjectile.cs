@@ -14,13 +14,9 @@ public class FireProjectile : MonoBehaviour {
     void Update() {
         if(Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 3.2f/fireRate;
-<<<<<<< HEAD
             Instantiate(bullet, transform.position + transform.forward, transform.rotation);
-=======
-            Rigidbody2D newBullet = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
-            newBullet.AddForce(transform.forward * velocity, ForceMode2D.Impulse);
             turretShootSound.Play();
->>>>>>> 4978fb0340271feeb54346b545e8ab91c94e735d
+
         }
         fireRateSlider.value = fireRate;
         fireRateSlider.GetComponentInChildren<Text>().text = fireRate.ToString("F2"); //Round to 2 decimals.

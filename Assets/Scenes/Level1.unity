@@ -552,6 +552,16 @@ PrefabInstance:
       propertyPath: m_FontData.m_RichText
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5245012675452605595, guid: fbc4173a377590142b80b89170019762,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1238798373}
+    - target: {fileID: 5245012675452605595, guid: fbc4173a377590142b80b89170019762,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseMenuButton
+      objectReference: {fileID: 0}
     - target: {fileID: 5671459975964002896, guid: fbc4173a377590142b80b89170019762,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -833,6 +843,7 @@ MonoBehaviour:
   waveText: {fileID: 142125026}
   currencyText: {fileID: 1371500390}
   nextWaveCountdownTextAnim: {fileID: 0}
+  pauseButtonAnim: {fileID: 1417935540}
   pauseMenu: {fileID: 1658268743}
   shopMenu: {fileID: 1126074935}
 --- !u!114 &1238798374
@@ -5137,6 +5148,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!95 &1417935540 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8007157168279579631, guid: fbc4173a377590142b80b89170019762,
+    type: 3}
+  m_PrefabInstance: {fileID: 572741077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1472416757 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 86655982, guid: 8ed3a72e86311b54a85af7c7fc23da14,
