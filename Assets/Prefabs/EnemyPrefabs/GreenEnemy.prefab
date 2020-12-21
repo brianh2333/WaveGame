@@ -148,7 +148,9 @@ MonoBehaviour:
   blueEnemy: 0
   greenEnemy: 1
   purpleEnemy: 0
+  redEnemy: 0
   speed: 2
+  attackDamage: 2
   deathSeconds: 0.5
   target: {fileID: 0}
   anim: {fileID: 0}
@@ -168,6 +170,7 @@ MonoBehaviour:
   health: 0
   isEnemy: 1
   isPlayer: 0
+  playerHealthSlider: {fileID: 0}
 --- !u!95 &3221748320164446880
 Animator:
   serializedVersion: 3

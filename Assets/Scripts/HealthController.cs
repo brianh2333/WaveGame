@@ -15,24 +15,33 @@ public class HealthController : MonoBehaviour {
     public bool isEnemy, isPlayer;
     bool canChange;
     public Slider playerHealthSlider;
+    public Text healthText;
     
     void Awake() {
         health = maxHealth; //Health starts at Max health
-        if (isPlayer) playerHealthSlider.value = health;
+        if (isPlayer)
+        {
+            playerHealthSlider.value = health;
+            healthText = playerHealthSlider.GetComponentInChildren<Text>();
+            healthText.text = playerHealthSlider.value.ToString() + " / " + maxHealth.ToString();
+        }
     }
 
     public void TakeDamage(float damage) {
         canChange = true;
         float oldHealth = health;
-        if (isPlayer) playerHealthSlider.value = health;
         
         if (canChange) {
             health -= damage;
+            if (isPlayer)
+            {
+                playerHealthSlider.value = health;
+                healthText.text = playerHealthSlider.value.ToString() + " / " + maxHealth.ToString();
+            }
             health = Mathf.Clamp(health, 0, maxHealth);
-            onHealthChanged(oldHealth, health);
+            if (isEnemy)
+                onHealthChanged(oldHealth, health);
         }
-
-        health -= damage;
         
         if (isPlayer && health <= 0) {
             SceneManager.LoadScene(0);
