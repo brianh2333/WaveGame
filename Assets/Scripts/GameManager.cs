@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     //Note: we are adding currency per projectile hit based on the enemy
     public float currency = 0;
     bool isPaused = false;
-    bool isShopMenu = false;
+    bool shopMenuIn = false;
 
     [Header("---TEXTS---")]
     public Text nextWaveCountdownText;
@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
     [Header("---GAMEOBJECTS---")]
     public Animator nextWaveCountdownTextAnim;
     public Animator pauseButtonAnim;
+    public Animator shopMenuAnimator;
     public GameObject pauseMenu;
-    public GameObject shopMenu;
 
     void Awake()
     {
@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
         }
         nextWaveCountdownTextAnim = nextWaveCountdownText.GetComponentInParent<Animator>();
         currencyText.text = "Currency: " + currency;
-        shopMenu.SetActive(false);
         pauseMenu.SetActive(false);
     }
 
@@ -70,21 +69,6 @@ public class GameManager : MonoBehaviour
             isPaused = false;
             pauseButtonAnim.SetBool("Pause", isPaused);
         }
-
-
-        //SHOP MENU
-        if (Input.GetKeyDown(KeyCode.S) && !isShopMenu)
-        {
-            shopMenu.SetActive(true);
-            isShopMenu = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.S) && shopMenu)
-        {
-            shopMenu.SetActive(false);
-            isShopMenu = false;
-        }
-
-
     }
 
     public void PauseMenuButton()
@@ -138,4 +122,16 @@ public class GameManager : MonoBehaviour
         currencyText.text = "Currency: " + currency;
     }
 
+    public void ShopMenu() {
+        if (shopMenuIn == false) {
+            //shopMenuAnimator.SetBool("SlideInBool", true);
+            shopMenuAnimator.SetTrigger("SlideIn");
+            shopMenuIn = true;
+        }
+        else if (shopMenuIn == true) {
+            //shopMenuAnimator.SetBool("SlideInBool", false);
+            shopMenuAnimator.SetTrigger("SlideOut");
+            shopMenuIn = false;
+        }
+    }
 }
