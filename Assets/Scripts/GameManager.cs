@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject buttonPanel;
     public GameObject optionsPanel;
     public GameObject instructionsPanel;
+    public GameObject pauseMenuButton;
 
     void Awake()
     {
@@ -93,6 +94,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PauseMenuButtonEnter()
+    {
+        pauseMenuButton.GetComponentInChildren<Animator>().SetBool("Hover", true);
+    }
+
+    public void PauseMenuButtonExit()
+    {
+        pauseMenuButton.GetComponentInChildren<Animator>().SetBool("Hover", false);
+    }
+
     public void ResumeGame()
     {
         if (isPaused)
@@ -144,7 +155,7 @@ public class GameManager : MonoBehaviour
     {
         if (isPaused)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            SceneManager.LoadScene(0);
         }
     }
 
