@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     //Note: we are adding currency per projectile hit based on the enemy
     public float currency = 0;
     bool isPaused = false;
-    bool shopMenuIn = false;
+    public bool shopMenuOpen = false;
 
     [Header("---TEXTS---")]
     public Text nextWaveCountdownText;
@@ -122,16 +122,27 @@ public class GameManager : MonoBehaviour
         currencyText.text = "Currency: " + currency;
     }
 
-    public void ShopMenu() {
-        if (shopMenuIn == false) {
-            //shopMenuAnimator.SetBool("SlideInBool", true);
-            shopMenuAnimator.SetTrigger("SlideIn");
-            shopMenuIn = true;
+    public void ShopMenuHover() {
+        if (shopMenuOpen == false) {
+            shopMenuAnimator.SetBool("SliderAnim", true);
+            shopMenuOpen = true;
+            ShopMenuOpen();
         }
-        else if (shopMenuIn == true) {
-            //shopMenuAnimator.SetBool("SlideInBool", false);
-            shopMenuAnimator.SetTrigger("SlideOut");
-            shopMenuIn = false;
+    }
+    
+    public void ShopMenuExit() {
+        if (shopMenuOpen == true) {
+            shopMenuOpen = false;
+            shopMenuAnimator.SetBool("SliderAnim", false);
         }
+    }
+
+    public void ShopMenuOpen() {
+        shopMenuOpen = true;
+    }
+
+    public void ShopMenuClose() {
+        shopMenuOpen = true;
+        ShopMenuExit();
     }
 }
