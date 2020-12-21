@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class GameManager : MonoBehaviour
     public Animator pauseButtonAnim;
     public Animator shopMenuAnimator;
     public GameObject pauseMenu;
+    public GameObject buttonPanel;
+    public GameObject optionsPanel;
+    public GameObject instructionsPanel;
 
     void Awake()
     {
@@ -86,6 +90,61 @@ public class GameManager : MonoBehaviour
             pauseMenu.SetActive(false);
             isPaused = false;
             pauseButtonAnim.SetBool("Pause", isPaused);
+        }
+    }
+
+    public void ResumeGame()
+    {
+        if (isPaused)
+        {
+            Time.timeScale = 1f;
+            pauseMenu.SetActive(false);
+            isPaused = false;
+            pauseButtonAnim.SetBool("Pause", isPaused);
+        }
+    }
+
+    public void OptionsButton()
+    {
+        if (isPaused)
+        {
+            buttonPanel.SetActive(false);
+            optionsPanel.SetActive(true);
+        }
+    }
+
+    public void OptionsBackButton()
+    {
+        if (isPaused)
+        {
+            buttonPanel.SetActive(true);
+            optionsPanel.SetActive(false);
+        }
+    }
+
+    public void InstructionsButton()
+    {
+        if (isPaused)
+        {
+            buttonPanel.SetActive(false);
+            instructionsPanel.SetActive(true);
+        }
+    }
+
+    public void InstructionsBackButton()
+    {
+        if (isPaused)
+        {
+            buttonPanel.SetActive(true);
+            instructionsPanel.SetActive(false);
+        }
+    }
+
+    public void MainMenuButton()
+    {
+        if (isPaused)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
 
