@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +12,7 @@ public class FireProjectile : MonoBehaviour {
     public AudioSource turretShootSound;
 
     void Update() {
-        if(Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire) {
+        if(Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && !GameManager.instance.shopMenuOpen) {
             nextTimeToFire = Time.time + 3.2f/fireRate;
             Instantiate(bullet, transform.position + transform.forward, transform.rotation);
             turretShootSound.Play();
