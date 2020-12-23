@@ -49,12 +49,10 @@ public class EnemyController : MonoBehaviour {
         else if (health <= (maxHealth-(maxHealth * .50))) //50% health
         {
             anim.SetBool("Hurt", true);
-            Debug.Log("Enemy hurt");
         }
     }
 
     public IEnumerator Despawn() {
-        Debug.Log("Despawn coroutine called");
         WaveSpawner.aliveEnemies--;
         speed = 0;
         anim.SetTrigger("Dead");
