@@ -46,7 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 5611917577610243609, guid: 40e922ef803ada54daca62362db388b6, type: 3}
   fireRate: 2.2
+  attackDamage: 10
   fireRateSlider: {fileID: 0}
+  attackDamageSlider: {fileID: 0}
   turretShootSound: {fileID: 1876191157}
 --- !u!82 &1876191157
 AudioSource:
@@ -271,6 +273,7 @@ MonoBehaviour:
   isEnemy: 0
   isPlayer: 1
   playerHealthSlider: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!1 &4373083859719418798
 GameObject:
   m_ObjectHideFlags: 0

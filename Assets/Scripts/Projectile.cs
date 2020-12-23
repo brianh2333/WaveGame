@@ -5,7 +5,6 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
 
     public float speed;
-    public int attackDamage = 10;
 
     void Update() {
         transform.Translate(Vector2.up * speed * Time.deltaTime);
@@ -20,7 +19,7 @@ public class Projectile : MonoBehaviour {
     void HitObject(GameObject g) {
         HealthController health = g.GetComponent<HealthController>();
         if (health != null) {
-            health.TakeDamage(attackDamage);
+            health.TakeDamage(FireProjectile.instance.attackDamage);
         }
     }
 }

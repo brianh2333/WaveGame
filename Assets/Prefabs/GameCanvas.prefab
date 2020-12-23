@@ -198,7 +198,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: FireRateIncrease
+        m_MethodName: AttackDamageIncrease
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -940,7 +940,7 @@ GameObject:
   - component: {fileID: 646933850}
   - component: {fileID: 646933849}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: BulletDamageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1005,7 +1005,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Bullet Damage
 --- !u!1 &765294457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1208,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -531, y: 0}
+  m_AnchoredPosition: {x: -32, y: 0}
   m_SizeDelta: {x: 65, y: 238.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1498878827462083449
@@ -2656,7 +2656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1296035808}
   m_Layer: 5
-  m_Name: FireRateUpgrader (1)
+  m_Name: AttackDamageUpgrader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3290,7 +3290,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'COST: 5c'
+  m_Text: 'COST: 10c'
 --- !u!1 &1504104228
 GameObject:
   m_ObjectHideFlags: 0
